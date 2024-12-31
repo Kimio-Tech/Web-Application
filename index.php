@@ -7,32 +7,28 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
-            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             margin: 0;
         }
 
         footer {
-            margin-top: auto; /* Pushes the footer to the bottom */
+            margin-top: auto;
         }
 
-        /* Media Query for Mobile View */
         @media (max-width: 768px) {
-            /* Hide the login and sign-up buttons on smaller screens */
             .desktop-buttons {
                 display: none;
             }
-            /* Show the hamburger menu icon in mobile view */
             .hamburger-menu {
                 display: block;
             }
-            /* Hide the menu items until toggled */
             .w3-dropdown-content {
                 display: none;
             }
@@ -41,7 +37,6 @@ session_start();
             }
         }
 
-        /* Ensure the buttons are visible on larger screens */
         @media (min-width: 769px) {
             .hamburger-menu {
                 display: none;
@@ -64,12 +59,15 @@ session_start();
 
         <div class="w3-position-topright desktop-buttons">
             <?php if (!isset($_SESSION['username'])): ?>
-                <!-- Show login and signup buttons if user is not logged in -->
+                <!-- Show login and sign up buttons if user is not logged in -->
                 <a href="login.php"><button class="w3-button w3-dark-grey w3-margin-left">Login</button></a>
                 <a href="signup.php"><button class="w3-button w3-dark-grey w3-margin-left">Sign Up</button></a>
+                <button class="w3-button w3-blue w3-margin-left" onclick="redirectToLogin()">Add Event</button>
             <?php else: ?>
-                <!-- Show logout button if user is logged in -->
+                <!-- Show logout, event, and view buttons if user is logged in -->
                 <a href="logout.php"><button class="w3-button w3-dark-grey w3-margin-left">Logout</button></a>
+                <a href="add_event.php"><button class="w3-button w3-blue w3-margin-left">Add Event</button></a>
+                <a href="view_event.php"><button class="w3-button w3-green w3-margin-left">View Event</button></a>
             <?php endif; ?>
         </div>
 
@@ -83,23 +81,27 @@ session_start();
             <?php if (!isset($_SESSION['username'])): ?>
                 <a href="login.php" class="w3-bar-item w3-button">Login</a>
                 <a href="signup.php" class="w3-bar-item w3-button">Sign Up</a>
+                <button class="w3-bar-item w3-button" onclick="redirectToLogin()">Add Event</button>
             <?php else: ?>
                 <a href="logout.php" class="w3-bar-item w3-button">Logout</a>
+                <a href="add_event.php" class="w3-bar-item w3-button">Add Event</a>
+                <a href="view_event.php" class="w3-bar-item w3-button">View Event</a>
             <?php endif; ?>
         </div>
     </header>
 
-    <!-- Photo Slider -->
+    <!-- Content (Photo Slider and Word Slider) -->
     <div class="w3-container w3-center w3-padding-16">
         <div class="w3-display-container">
-            <img src="gambar1.jpg" class="w3-image w3-round-large" id="slide" alt="Photo Slider">
+            <img src="Gambar1.jpg" class="w3-image w3-round-large" id="slide" alt="Photo Slider">
         </div>
     </div>
 
-    <!-- Word Slider -->
     <div class="w3-container w3-center w3-padding-16">
         <div class="w3-display-container">
-            <h6 class="w3-text-black">Our company stands at the forefront of the automotive industry, renowned for offering a premium selection of modern, professional, and high-quality vehicles that cater to the evolving demands of today’s drivers. As one of the best-selling car dealerships in the country, we have built a solid reputation for providing vehicles that combine state-of-the-art technology, exceptional performance, and eye-catching designs. Our extensive inventory includes a diverse range of cars, from compact city vehicles to powerful SUVs and luxurious sedans, all meticulously crafted to ensure durability, comfort, and driving pleasure. We pride ourselves on our commitment to excellence, offering not only the best vehicles but also exceptional customer service, making the car-buying experience smooth, transparent, and satisfying. Our professional team of experts is dedicated to guiding each customer in finding the perfect car that suits their lifestyle and preferences. Whether you’re a first-time buyer or a seasoned enthusiast, we strive to exceed expectations at every turn, delivering outstanding after-sales support and maintenance services. With our focus on innovation, reliability, and customer satisfaction, we are proud to be the trusted choice for those who value quality and performance in their vehicles.</h6>
+            <h6 class="w3-text-black">Creating Memorable Experiences, One Event at a Time
+
+At Moverilz Sdn Bhd, we are passionate about turning ideas into extraordinary events. Our mission is to deliver seamless, unforgettable experiences that connect people, celebrate milestones, and create lasting impressions.</h6>
         </div>
     </div>
 
@@ -115,7 +117,7 @@ session_start();
         setInterval(updateClock, 1000);
 
         // Image Slider
-        const images = ["gambar1.jpg", "gambar2.jpg", "gambar3.jpg"];
+        const images = ["Gambar1.jpg", "Gambar2.jpg", "Gambar3.jpg"];
         let currentIndex = 0;
 
         function changeSlide() {
@@ -129,15 +131,18 @@ session_start();
             const menuItems = document.querySelector('.w3-dropdown-content');
             menuItems.classList.toggle('w3-show');
         }
+
+        // Redirect to Login
+        function redirectToLogin() {
+            alert("You need to log in first to access this feature.");
+            window.location.href = "login.php";
+        }
     </script>
 
     <!-- Footer -->
     <footer class="w3-container w3-dark-grey w3-padding-16 w3-center">
-        <p class="w3-text-white">
-            Copyright &copy; 2024 Moverilz Sdn Bhd
-        </p>
+        <p class="w3-text-white">Copyright &copy; 2024 Moverilz Sdn Bhd</p>
     </footer>
 
 </body>
 </html>
-

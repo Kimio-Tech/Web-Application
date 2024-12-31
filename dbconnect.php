@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "assignment_web"; // Adjusted name without spaces
+$dbname = "assignment_web"; 
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
